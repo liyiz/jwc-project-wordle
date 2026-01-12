@@ -6,10 +6,6 @@ function GuessInput() {
 
   function handleSubmit() {
     console.log({guess});
-    if (guess.length !== 5) {
-      alert('You did not submit a 5 letter guess. Please try again.');
-      return;
-    }
     // checkGuess
     setGuess(''); // clear input value after checking guess
   }
@@ -28,6 +24,7 @@ function GuessInput() {
         minLength={5}
         maxLength={5}
         pattern="[a-zA-Z]{5}" /* RegEx to only allow 5 alphabet characters exactly */
+        title="5 letter word"
         id="guess-input" 
         type="text" 
         value={guess}
