@@ -1,6 +1,6 @@
 import React from 'react';
 
-function GuessResults({guesses}) {
+function GuessResults({ guesses }) {
 
   return (
     <div className="guess-results">

@@ -13,29 +13,26 @@ console.info({ answer });
 
 function Game() {
 
-  const [guess, setGuess] = React.useState('');
   const [guesses, setGuesses] = React.useState([]);
 
-  function handleSubmit() {
-    console.log({guess});
+  function handleSubmit(tentativeGuess) {
+    console.log({ tentativeGuess });
 
     const guessData = {}
-    guessData.id = crypto.randomUUID();
-    guessData.guess = guess;
+    guessData.id = `${tentativeGuess}-${crypto.randomUUID()}`;
+    guessData.guess = tentativeGuess;
 
-    const nextGuesses = [...guesses];
-    nextGuesses.push(guessData);
+    const nextGuesses = [...guesses, guessData];
     setGuesses(nextGuesses);
-    console.log({nextGuesses});
+    console.log({ nextGuesses });
 
     // checkGuess
 
-    setGuess(''); // clear input value after checking guess
   }
 
   return <>
-    <GuessResults guesses={guesses} setGuesses={setGuesses} />
-    <GuessInput guess={guess} setGuess={setGuess} handleSubmit={handleSubmit} />
+    <GuessResults guesses={guesses}/>
+    <GuessInput handleSubmit={handleSubmit} />
   </>;
 }
 
