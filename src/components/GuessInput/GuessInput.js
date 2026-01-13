@@ -1,14 +1,6 @@
 import React from 'react';
 
-function GuessInput() {
-
-  const [guess, setGuess] = React.useState('');
-
-  function handleSubmit() {
-    console.log({guess});
-    // checkGuess
-    setGuess(''); // clear input value after checking guess
-  }
+function GuessInput({guess, setGuess, handleSubmit}) {
 
   return (
     <form 
