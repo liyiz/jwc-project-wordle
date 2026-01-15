@@ -3,16 +3,11 @@ import { range } from '../../utils';
 import Guess from '../Guess';
 
 function GuessResults({ guesses, guessLimit }) {
-
   return (
     <div className="guess-results">
-      { guesses.map( (guess) => (
-        <Guess data={guess} key={guess.id} />
+      { range(guessLimit).map( (num) => (
+        <Guess value={guesses[num]} key={guesses[num] ? guesses[num].id : num} />
       ))}
-      { range(guesses.length, guessLimit).map(() => (
-        <Guess key={crypto.randomUUID()} />
-      ))}
-
     </div>
   );
 }
