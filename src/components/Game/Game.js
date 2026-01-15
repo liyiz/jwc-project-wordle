@@ -2,6 +2,7 @@ import React from 'react';
 
 import { sample } from '../../utils';
 import { WORDS } from '../../data';
+import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
 
 import GuessInput from '../GuessInput';
 import GuessResults from '../GuessResults/GuessResults';
@@ -18,6 +19,10 @@ function Game() {
   function handleSubmit(tentativeGuess) {
     console.log({ tentativeGuess });
 
+    if (guesses.length >= NUM_OF_GUESSES_ALLOWED) {
+      return;
+    }
+
     const guessData = {}
     guessData.id = `${tentativeGuess}-${crypto.randomUUID()}`;
     guessData.guess = tentativeGuess;
@@ -31,7 +36,7 @@ function Game() {
   }
 
   return <>
-    <GuessResults guesses={guesses}/>
+    <GuessResults guesses={guesses} guessLimit={NUM_OF_GUESSES_ALLOWED}/>
     <GuessInput handleSubmit={handleSubmit} />
   </>;
 }
