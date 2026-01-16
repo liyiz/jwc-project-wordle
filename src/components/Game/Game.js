@@ -3,7 +3,6 @@ import React from 'react';
 import { sample } from '../../utils';
 import { WORDS } from '../../data';
 import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
-import { checkGuess } from '../../game-helpers';
 
 import GuessInput from '../GuessInput';
 import GuessResults from '../GuessResults/GuessResults';
@@ -27,16 +26,15 @@ function Game() {
     const guessData = {}
     guessData.id = `${tentativeGuess}-${crypto.randomUUID()}`;
     guessData.guess = tentativeGuess;
-    guessData.evaluated = checkGuess(tentativeGuess, answer);
 
     const nextGuesses = [...guesses, guessData];
     setGuesses(nextGuesses);
-    console.log({ nextGuesses });
 
+    // Checking guesses are handled in Guess component
   }
 
   return <>
-    <GuessResults guesses={guesses} guessLimit={NUM_OF_GUESSES_ALLOWED} />
+    <GuessResults guesses={guesses} guessLimit={NUM_OF_GUESSES_ALLOWED} answer={answer} />
     <GuessInput handleSubmit={handleSubmit} />
   </>;
 }
