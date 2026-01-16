@@ -5,11 +5,13 @@ function Guess( {value} ) {
 
   return (
     <p className="guess">
-      { range(5).map((num) => (
-        <span className="cell" key={ crypto.randomUUID() }>
-          {value ? value.guess[num] : undefined}
-        </span>
-      ))}
+      { range(5).map((num) => {
+        const classToApply = value ? 'cell ' + value.evaluated[num].status : 'cell';
+        return (
+        <span className={ classToApply } key={ crypto.randomUUID() }>
+          {value ? value.evaluated[num].letter : undefined}
+        </span>)
+      })}
     </p>
   );
 
